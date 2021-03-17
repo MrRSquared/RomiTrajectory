@@ -11,10 +11,9 @@ None
 ## Additional Configuration Required
 - Ensure that the gyro has been [calibrated using the web UI](https://docs.wpilib.org/en/stable/docs/romi-robot/web-ui.html#imu-calibration)
 - For best results, you should run a characterization on your Romi using the tool in [Zhiquanyeo's Git.](https://github.com/bb-frc-workshops/romi-examples/tree/main/romi-characterization) since there might be slight variations between Romis (due to assembly, mechanical difference, etc)
-- We have created a few handy convenience features that allow you to easily imput and test waypoints.
-    - [Add Waypoints](src/main/java/frc/robot/Waypoints.java) Create a new list(or modify the existing one) of waypoints and starting and ending poses.
-    - [Plot Trajectory Command](src/main/java/frc/robot/commands/PlotTrajectory.java) While not needing much editing, this command allows you to visualize the trajectory using the Field2d() class. You can use it to fine-tune your wyapoints and starting and ending poses. It is set as an option for the Autonomous selcetor in [RobotContainer()](src/main/java/frc/robot/RobotContainer.java). src\main\java\frc\robot\RobotContainer.java
     
 
 ## Additional Code Setup
-The trajectory can be modified by editing the `generateRamseteCommand` method in `RobotContainer.java`
+We have created a few handy convenience features that allow you to easily imput and test waypoints.
+- [Add Waypoints](src/main/java/frc/robot/Waypoints.java) Create a new list(or modify the existing one) of waypoints and starting and ending poses.
+- [Plot Trajectory Command](src/main/java/frc/robot/commands/PlotTrajectory.java) While not needing much editing, this command allows you to visualize the trajectory using the Field2d() class. You can use it to fine-tune your wyapoints and starting and ending poses. It is set as an option for the Autonomous selcetor in [RobotContainer()](src/main/java/frc/robot/RobotContainer.java). You can access it by using shuffleboard, or the Sendable Chooser in Glass or the Simulator Window.
