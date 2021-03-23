@@ -157,7 +157,4 @@ gradle-app.setting
 bin/
 imgui.ini
 
-#Build.gradle files
-build.gradle
-
 # End of https://www.gitignore.io/api/c++,java,linux,macos,gradle,windows,visualstudiocode
