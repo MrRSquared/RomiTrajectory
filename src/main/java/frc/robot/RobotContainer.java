@@ -17,7 +17,6 @@ import edu.wpi.first.wpilibj.geometry.Translation2d;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.commands.ArcadeDrive;
-import frc.robot.commands.FindNewTrajectoryRuntime;
 import frc.robot.commands.PlotTrajectory;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.OnBoardIO;
@@ -159,21 +158,7 @@ public class RobotContainer {
     // Setup SmartDashboard options
     m_chooser.setDefaultOption("Ramsete Trajectory", generateRamseteCommand(m_waypoints));
     m_chooser.addOption("Plot Points",new PlotTrajectory(exampleTrajectory, m_drivetrain,m_waypoints));
-    m_chooser.addOption("Plot Points at Runtime",new FindNewTrajectoryRuntime(exampleTrajectory, m_drivetrain, m_waypoints));
-    
-    //Setup starting pose entry for runtime trajectory...
-    SmartDashboard.putNumber("Start PoseX", 0);
-    SmartDashboard.putNumber("Start PoseY", 0);
-    SmartDashboard.putNumber("Start PoseAngle(in Degrees)", 0);
-
-    //Setup waypoint entry for runtime trajectory...
-    SmartDashboard.putNumber("PointX", 1);
-    SmartDashboard.putNumber("PointY", 1);
-    
-    //Setup end pose entry for runtime trajectory...
-    SmartDashboard.putNumber("End PoseX", 0);
-    SmartDashboard.putNumber("End PoseY", 0);
-    SmartDashboard.putNumber("End PoseAngle(in Degrees)", 0);
+    ;
     
     SmartDashboard.putData(m_chooser);
   }
@@ -194,7 +179,7 @@ public class RobotContainer {
    */
   public Command getArcadeDriveCommand() {
     return new ArcadeDrive(
-        m_drivetrain, () -> -(m_controller.getRawAxis(1))/2, () -> (m_controller.getRawAxis(0))/2);
+        m_drivetrain, () -> -(m_controller.getRawAxis(1))/2, () -> (m_controller.getRawAxis(2))/2);
   }
 }
 
