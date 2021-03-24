@@ -167,13 +167,13 @@ public class RobotContainer {
     SmartDashboard.putNumber("Start PoseAngle(in Degrees)", 0);
 
     //Setup waypoint entry for runtime trajectory...
-    SmartDashboard.putNumber("PointX", 1);
-    SmartDashboard.putNumber("PointY", 1);
+    SmartDashboard.putNumber("PointX", 5);
+    SmartDashboard.putNumber("PointY", 5);
     
     //Setup end pose entry for runtime trajectory...
-    SmartDashboard.putNumber("End PoseX", 0);
-    SmartDashboard.putNumber("End PoseY", 0);
-    SmartDashboard.putNumber("End PoseAngle(in Degrees)", 0);
+    SmartDashboard.putNumber("End PoseX", 10);
+    SmartDashboard.putNumber("End PoseY", 10);
+    SmartDashboard.putNumber("End PoseAngle(in Degrees)", 180);
     
     SmartDashboard.putData(m_chooser);
   }
