@@ -18,7 +18,6 @@ import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
 import edu.wpi.first.wpilibj.util.Units;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.Waypoints;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
@@ -34,6 +33,7 @@ public class FindNewTrajectoryRuntime extends CommandBase {
   Trajectory runTimeTrajectory;
   List<Translation2d> m_list;
   List<Pose2d> m_pose;
+  List <Translation2d> waypoints;
   Waypoints m_waypoints;
   TrajectoryConfig config;
 
@@ -77,7 +77,6 @@ public class FindNewTrajectoryRuntime extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    List<Translation2d> waypoints;
 	runTimeTrajectory = TrajectoryGenerator.generateTrajectory(
     new Pose2d(Units.inchesToMeters(SmartDashboard.getNumber("Start PoseX", 0)), 
     Units.inchesToMeters(SmartDashboard.getNumber("Start PoseY", 0)), 
