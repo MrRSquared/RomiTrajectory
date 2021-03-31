@@ -19,6 +19,7 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.FindNewTrajectoryRuntime;
 import frc.robot.commands.PlotTrajectory;
+import frc.robot.commands.FindRuntimeTrajectoryManyPoints;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.OnBoardIO;
 import frc.robot.subsystems.OnBoardIO.ChannelMode;
@@ -56,6 +57,9 @@ public class RobotContainer {
  
    //Make our Trajectory local so we can pass it to the plotter.
    Trajectory exampleTrajectory;
+
+   private double[] defaultCoordinates = {0.0, 5.0};
+   private double[] defaultPoseCoordinates = {0,0,180};
    
  
    // NOTE: The I/O pin functionality of the 5 exposed I/O pins depends on the hardware "overlay"
@@ -160,12 +164,12 @@ public class RobotContainer {
     m_chooser.setDefaultOption("Ramsete Trajectory", generateRamseteCommand(m_waypoints));
     m_chooser.addOption("Plot Points",new PlotTrajectory(exampleTrajectory, m_drivetrain,m_waypoints));
     m_chooser.addOption("Plot Points at Runtime",new FindNewTrajectoryRuntime(exampleTrajectory, m_drivetrain, m_waypoints));
-    
+    m_chooser.addOption("Plot Many Points at Runtime", new FindRuntimeTrajectoryManyPoints(exampleTrajectory, m_drivetrain, m_waypoints));
     //Setup starting pose entry for runtime trajectory...
     SmartDashboard.putNumber("Start PoseX", 0);
     SmartDashboard.putNumber("Start PoseY", 0);
     SmartDashboard.putNumber("Start PoseAngle(in Degrees)", 0);
-
+    SmartDashboard.putNumberArray("starting pose", defaultPoseCoordinates);
     //Setup waypoint entry for runtime trajectory...
     SmartDashboard.putNumber("PointX", 5);
     SmartDashboard.putNumber("PointY", 5);
@@ -174,7 +178,27 @@ public class RobotContainer {
     SmartDashboard.putNumber("End PoseX", 10);
     SmartDashboard.putNumber("End PoseY", 10);
     SmartDashboard.putNumber("End PoseAngle(in Degrees)", 180);
-    
+
+    //Setup waypoint entry for runtime trajectory...
+    SmartDashboard.putNumber("PointX", 5);
+    SmartDashboard.putNumber("PointY", 5);
+
+    //Maybe we can use arrays to streamline the waypoint creation and make many waypoints...
+    SmartDashboard.putNumberArray("Waypoint 1", defaultCoordinates);
+    SmartDashboard.putNumberArray("Waypoint 2", defaultCoordinates);
+    SmartDashboard.putNumberArray("Waypoint 3", defaultCoordinates);
+    SmartDashboard.putNumberArray("Waypoint 4", defaultCoordinates);
+    SmartDashboard.putNumberArray("Waypoint 5", defaultCoordinates);
+    SmartDashboard.putNumberArray("Waypoint 6", defaultCoordinates);
+    SmartDashboard.putNumberArray("Waypoint 7", defaultCoordinates);
+    SmartDashboard.putNumberArray("Waypoint 8", defaultCoordinates);
+    SmartDashboard.putNumberArray("Waypoint 9", defaultCoordinates);
+    SmartDashboard.putNumberArray("Waypoint 910", defaultCoordinates);
+    SmartDashboard.putNumberArray("Waypoint 911", defaultCoordinates);
+    SmartDashboard.putNumberArray("Waypoint 912", defaultCoordinates);
+    SmartDashboard.putNumberArray("Waypoint 913", defaultCoordinates);
+    SmartDashboard.putNumberArray("Waypoint 914", defaultCoordinates);
+    SmartDashboard.putNumberArray("Waypoint 915", defaultCoordinates);
     SmartDashboard.putData(m_chooser);
   }
 
