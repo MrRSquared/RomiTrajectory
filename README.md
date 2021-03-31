@@ -23,4 +23,8 @@ We have created a few handy convenience features that allow you to easily imput 
 - [FindNewTrajectoryRuntime() Command](src/main/java/frc/robot/commands/FindNewTrajectoryRuntime.java) Use the following smartdashboard entries to create a trajectory that you can move around the screen.
     - Start PoseX, Start PoseY, Start PoseAngle(in degrees) -- Makes up the start pose.
     - WaypointX, WaypointY -- Makes up the waypoint (you may modify the code to add more waypoints if you would like.)
-    - End PoseX, End PoseY, End Pose Angle (in degrees) -- Makes up the ending pose .
+    - End PoseX, End PoseY, End Pose Angle (in degrees) -- Makes up the ending pose.
+- [FindRuntimeTrajectoryManyPoints() Command](src/main/java/frc/robot/commands/FindRuntimeTrajectoryManyPoints.java) Use the following smartdashboard entries to create a trajectory that you can move around the screen.
+    - Start PoseX, Start PoseY, Start PoseAngle(in degrees) -- Makes up the start pose.
+    - Waypoint(*) -- Makes up the waypoint. If left as the default x, coordinate, this does nothing, but if you change it, it will add the new coordinate to the trajectory. They go in order. So, in theory, the first point will be the first, and so on.
+    - End PoseX, End PoseY, End Pose Angle (in degrees) -- Makes up the ending pose.
