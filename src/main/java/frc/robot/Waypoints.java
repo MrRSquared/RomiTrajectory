@@ -24,10 +24,10 @@ public class Waypoints {
              * Units should be in Meters, but you can use the 
              * Units.inchesToMeters() method to convert them.
              */
-            new Translation2d(Units.inchesToMeters(45), Units.inchesToMeters(10)),
-            new Translation2d(Units.inchesToMeters(37.5), Units.inchesToMeters(22.5)),
-            new Translation2d(Units.inchesToMeters(7.5), Units.inchesToMeters(20))
-            //)
+            new Translation2d(Units.inchesToMeters(20), Units.inchesToMeters(15)),
+            new Translation2d(Units.inchesToMeters(50), Units.inchesToMeters(15))
+           // new Translation2d(Units.inchesToMeters(7.5), Units.inchesToMeters(20))
+            
         );
         return aWaypoints;
     }
@@ -38,7 +38,7 @@ public class Waypoints {
          */
         List <Pose2d> aPoses = List.of(
             new Pose2d(Units.inchesToMeters(7.5), Units.inchesToMeters(7.5),new Rotation2d(0)),
-            new Pose2d(Units.inchesToMeters(7.5), Units.inchesToMeters(7.5), new Rotation2d(0))
+            new Pose2d(Units.inchesToMeters(7.5), Units.inchesToMeters(7.5), new Rotation2d(180))
         );
         return aPoses;
     }
