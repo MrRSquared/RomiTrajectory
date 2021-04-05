@@ -4,8 +4,12 @@
 
 package frc.robot;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.List;
 
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -20,6 +24,7 @@ import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.FindNewTrajectoryRuntime;
 import frc.robot.commands.PlotTrajectory;
 import frc.robot.commands.FindRuntimeTrajectoryManyPoints;
+import frc.robot.commands.PlotPathweaver;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.OnBoardIO;
 import frc.robot.subsystems.OnBoardIO.ChannelMode;
@@ -28,6 +33,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
+import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
 import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -142,6 +148,20 @@ public class RobotContainer {
         .andThen(new InstantCommand(() -> m_drivetrain.tankDriveVolts(0, 0), m_drivetrain));
   } 
 
+  private Trajectory pathtraj (){
+    String trajectoryJSON = "paths/firstPath.wpilib.json";
+    Trajectory trajectory = new Trajectory();
+
+    try {
+      Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
+      trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
+   } catch (IOException ex) {
+      new PrintCommand("Unable to open trajectory: " ); //+ trajectoryJSON, ex.getStackTrace()
+   }
+   return trajectory;
+    
+  }
+
   /**
    * Use this method to define your button->command mappings. Buttons can be created by
    * instantiating a {@link GenericHID} or one of its subclasses ({@link
@@ -162,6 +182,7 @@ public class RobotContainer {
 
     // Setup SmartDashboard options
     m_chooser.setDefaultOption("Ramsete Trajectory", generateRamseteCommand(m_waypoints));
+    m_chooser.addOption("Plot Pathweaver",new PlotPathweaver(pathtraj(), m_drivetrain,m_waypoints));
     m_chooser.addOption("Plot Points",new PlotTrajectory(exampleTrajectory, m_drivetrain,m_waypoints));
     m_chooser.addOption("Plot Points at Runtime",new FindNewTrajectoryRuntime(exampleTrajectory, m_drivetrain, m_waypoints));
     m_chooser.addOption("Plot Many Points at Runtime", new FindRuntimeTrajectoryManyPoints(exampleTrajectory, m_drivetrain, m_waypoints));
